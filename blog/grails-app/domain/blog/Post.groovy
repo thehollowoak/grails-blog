@@ -1,10 +1,10 @@
 package blog
 
-class Blog {
+class Post {
 
-    String name
     String title
-    Post posts = []
+    Date date
+    String content
 
 
     static constraints = {

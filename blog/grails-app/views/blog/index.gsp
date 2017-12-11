@@ -51,9 +51,12 @@
 
 <div id="content" role="main">
     <ul>
-        <li>${content?.name}
-            ${content?.title}
-         </li>
+        <li>${content?.name} </li>
+       <li> ${content?.title} </li>
+        <g:each var="post" in="${content?.posts}">
+            <li>${post.title}</li>
+            <li>${post.content}</li>
+        </g:each>
     </ul>
 </div>
 

@@ -2,5 +2,8 @@ package blog
 
 class LoginController {
 
-    def index() { }
+    def index() {
+
+    }
+
 }

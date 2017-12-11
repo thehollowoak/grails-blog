@@ -50,14 +50,21 @@
 </div>
 
 <div id="content" role="main">
-    <ul>
-        <li>${content?.name} </li>
-       <li> ${content?.title} </li>
-        <g:each var="post" in="${posts}">
-            <li>${post.title}</li>
-            <li>${post.content}</li>
-        </g:each>
-    </ul>
+    <div class="well well-lg col-md-6">
+        <form action="/blog/save" method="POST">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text"
+                       class="form-control" id="title" name="title"
+                       placeholder="title">
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" id="content" name="content"></textarea>
+
+            </div>
+            <button type="submit" name="save" class="btn btn-primary">Save</button>
+        </form>
+    </div>
 </div>
 
 </body>

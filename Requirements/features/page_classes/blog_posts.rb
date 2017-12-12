@@ -5,5 +5,6 @@ class BlogPosts
 
   page_url "http://localhost:8080/blog/"
 
-  div(:display, :id -> 'display')
+  div(:display, :id => 'content')
+  div(:success, :id => 'success')
 end

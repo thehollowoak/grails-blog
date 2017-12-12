@@ -1,4 +1,4 @@
-require 'page_object'
+require 'page-object'
 
 include PageObject::PageFactory
 
@@ -17,7 +17,7 @@ end
 Then(/^I am logged in$/) do
   visit_page BlogPosts
   on_page BlogPosts do |page|
-    expect(page.display).to include 'blog'
+    expect(page.display).to include 'Success!'
   end
 end
 
@@ -40,13 +40,13 @@ When(/^I publish a new blog post$/) do
 end
 
 Then(/^I am notified that the blog post was successfully added$/) do
-  on_page NewPost do |page|
+  visit_page BlogPosts
+  on_page BlogPosts do |page|
     expect(page.success).to include 'Success!'
   end
 end
 
 And(/^the newly added blog post is at the top of the recent posts list$/) do
-  visit_page BlogPosts
   on_page BlogPosts do |page|
     expect(page.display).to include 'Test Title'
   end

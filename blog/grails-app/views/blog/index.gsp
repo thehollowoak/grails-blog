@@ -50,6 +50,11 @@
 </div>
 
 <div id="content" role="main">
+
+    <div id="success">
+        <p type="hidden">Success!</p>
+    </div>
+
     <ul>
         <li>${content?.name} </li>
        <li> ${content?.title} </li>
@@ -57,6 +62,8 @@
             <li>${post.title}</li>
             <li>${post.content}</li>
         </g:each>
+        <br>
+        <a href="/blog/newPost" name="newpost" class="btn btn-primary">Create new Post</a>
     </ul>
 </div>
 

@@ -59,7 +59,7 @@
                        placeholder="title">
             </div>
             <div class="form-group">
-                <textarea class="form-control" id="content" name="content"></textarea>
+                <textarea class="form-control" id="composition" name="content"></textarea>
 
             </div>
             <button type="submit" name="save" class="btn btn-primary">Save</button>

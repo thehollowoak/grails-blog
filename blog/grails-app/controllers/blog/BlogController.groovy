@@ -13,11 +13,9 @@ class BlogController {
     }
 
     def save(){
-       // Post[] blogPost = [new Post(title: params.title, date: new Date(), content: params.content)]
-      //  def theBlog = Blog.findByName('JSmith')
-      //  theBlog.posts.add blogPost
-       // theBlog.saveOrUpdate()
-      //  render(view:'index')
+        new Post(title: params.title, date: new Date(), content: params.content, author: 'JSmith').save()
+        render(view:'index')
+        redirect(uri: '/blog/index')
     }
 
 

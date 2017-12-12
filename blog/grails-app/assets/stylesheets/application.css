@@ -13,3 +13,21 @@
 *= require mobile
 *= require_self
 */
+
+#author-name{
+    text-align: center;
+
+}
+
+#create-button{
+    float: right;
+    text-decoration: none;
+}
+
+.post-format{
+    background-color: beige;
+    border-color: black;
+    border: solid;
+    border-radius: 25px;
+
+}

@@ -2,69 +2,36 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>Welcome to Grails</title>
+    <title>${content?.name}'s Blog</title>
 </head>
-<body>
-<content tag="nav">
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Application Status <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li><a href="#">Environment: ${grails.util.Environment.current.name}</a></li>
-            <li><a href="#">App profile: ${grailsApplication.config.grails?.profile}</a></li>
-            <li><a href="#">App version:
-                <g:meta name="info.app.version"/></a>
-            </li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Grails version:
-                <g:meta name="info.app.grailsVersion"/></a>
-            </li>
-            <li><a href="#">Groovy version: ${GroovySystem.getVersion()}</a></li>
-            <li><a href="#">JVM version: ${System.getProperty('java.version')}</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Reloading active: ${grails.util.Environment.reloadingAgentEnabled}</a></li>
-        </ul>
-    </li>
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Artefacts <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li><a href="#">Controllers: ${grailsApplication.controllerClasses.size()}</a></li>
-            <li><a href="#">Domains: ${grailsApplication.domainClasses.size()}</a></li>
-            <li><a href="#">Services: ${grailsApplication.serviceClasses.size()}</a></li>
-            <li><a href="#">Tag Libraries: ${grailsApplication.tagLibClasses.size()}</a></li>
-        </ul>
-    </li>
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installed Plugins <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <g:each var="plugin" in="${applicationContext.getBean('pluginManager').allPlugins}">
-                <li><a href="#">${plugin.name} - ${plugin.version}</a></li>
-            </g:each>
-        </ul>
-    </li>
-</content>
+<body class= 'container'>
 
-<div class="svg" role="presentation">
-    <div class="grails-logo-container">
-        <asset:image src="grails-cupsonly-logo-white.svg" class="grails-logo"/>
-    </div>
-</div>
+
+
 
 <div id="content" role="main">
-
+    <div class="row">
+        <h1>${content?.title}</h1>
+         <h4 id="author-name">${content?.name}</h4>
+    </div>
     <div id="success">
         <p type="hidden">Success!</p>
     </div>
+    <div class="row">
+         <a href="/blog/newPost" id="create-button" name="newpost" class="btn btn-primary">Create New Post</a>
+    </div>
 
-    <ul>
-        <li>${content?.name} </li>
-       <li> ${content?.title} </li>
+
         <g:each var="post" in="${posts}">
-            <li>${post.title}</li>
-            <li>${post.content}</li>
+            <div class="row">
+                <h3>${post.title}</h3>
+                <div class="row post-format">
+                    <p>${post.content}</p>
+                </div>
+            </div>
         </g:each>
         <br>
-        <a href="/blog/newPost" name="newpost" class="btn btn-primary">Create new Post</a>
-    </ul>
+
 </div>
 
 </body>

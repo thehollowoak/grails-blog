@@ -8,5 +8,10 @@ class Post {
     String author
 
     static constraints = {
+
+    }
+    static mapping ={
+
+        content sqlType: 'varchar(10000)'
     }
 }

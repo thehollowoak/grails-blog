@@ -11,7 +11,8 @@ class Post {
 
     }
     static mapping ={
-
         content sqlType: 'varchar(10000)'
     }
+
+    
 }

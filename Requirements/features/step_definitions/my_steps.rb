@@ -17,7 +17,7 @@ end
 Then(/^I am logged in$/) do
   visit_page BlogPosts
   on_page BlogPosts do |page|
-    expect(page.display).to include 'Success!'
+    expect(page.display).to include 'Create New Post'
   end
 end
 
@@ -42,7 +42,7 @@ end
 Then(/^I am notified that the blog post was successfully added$/) do
   visit_page BlogPosts
   on_page BlogPosts do |page|
-    expect(page.success).to include 'Success!'
+    expect(page.success).to include 'New post successfully created'
   end
 end
 

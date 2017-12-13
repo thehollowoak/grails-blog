@@ -32,7 +32,10 @@ class BlogController {
 
     def view(){
         def post = Post.findById(params.postId)
-        render(view:'view', model: [post: post, pageNumber: params.pageNumber])
+        //def comments = Comments.findAllByPostId(params.postId)
+        def comments = Comments.findAll()
+        render(view:'view', model: [post: post, pageNumber: params.pageNumber, comments: comments])
+
     }
 
     def search(){
@@ -40,6 +43,11 @@ class BlogController {
         def posts = Post.findAllByAuthorAndTitleIlike('JSmith', "%${params.search}%")
         def pageNumber = 1
         render(view:'index', model: [content: content, posts: posts, pageNumber: pageNumber])
+    }
+    def postComment(){
+        def message = params.comment
+        new Comments(text: message, postId: params.postId).save()
+        render "${message}"
     }
 
 }

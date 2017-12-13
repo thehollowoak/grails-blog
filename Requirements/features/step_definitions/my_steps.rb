@@ -133,3 +133,30 @@ Then(/^I should see posts with that value in the title$/) do
     page.delete
   end
 end
+
+Then(/^I should see comments left by other readers$/) do
+  on_page View do |page|
+    expect(page.display).to include 'Comments'
+  end
+end
+
+Given(/^I am reading a blog post from my favorite blogger$/) do
+  visit_page BlogPosts
+  on_page BlogPosts do |page|
+    page.view
+  end
+
+end
+
+When(/^I add my genius comment to the blog post$/) do
+  on_page View do |page|
+    page.comment = "I love cats!"
+    page.submit
+  end
+end
+
+Then(/^my genius comment is at the top of the blog post comments$/) do
+  on_page View do |page|
+    expect(page.display).to inlcude 'I love cats!'
+  end
+end

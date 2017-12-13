@@ -16,8 +16,9 @@
     </div>
     
     <div class="row">
-         <a href="/blog/newPost" id="create-button" name="newpost" class="btn btn-primary">Create New Post</a>
+         <a href="/blog/newPost" id="create-button" name="newpost" class="btn btn-success">Create New Post</a>
     </div>
+    </br>
 
     <div class="row" id="success">
         <g:if test="${use (groovy.time.TimeCategory) {groovy.time.TimeCategory.minus(new Date(), posts[0]?.date) < 10.seconds}}">
@@ -30,6 +31,10 @@
             <div class="row post-format">
                 <p>${post.content}</p>
             </div>
+            <span class="delete-button btn">
+                <g:link action="delete" params="${[postId: post.id]}">Delete Post</g:link>
+            </span>
+            </br>
         </div>
     </g:each>
     <br>

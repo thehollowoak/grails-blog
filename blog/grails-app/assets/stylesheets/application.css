@@ -19,7 +19,7 @@
 
 }
 
-#create-button{
+#create-button, .delete-button{
     float: right;
     text-decoration: none;
 }
@@ -29,5 +29,4 @@
     border-color: black;
     border: solid;
     border-radius: 25px;
-
 }

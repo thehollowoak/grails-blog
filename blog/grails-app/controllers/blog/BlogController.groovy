@@ -9,14 +9,16 @@ class BlogController {
         render(view:'index', model: [content: content, posts: posts])
     }
 
-    def newPost() {
+    def newPost() {}
 
-    }
-
-    def save(){
+    def save() {
         new Post(title: params.title, date: new Date(), content: params.content, author: 'JSmith').save()
         redirect(uri: '/blog/index')
     }
 
+    def delete() {
+        Post.findById(params.postId).delete(flush: true)
+        redirect(uri: '/blog/index')
+    }
 
 }

@@ -8,4 +8,5 @@ class BlogPosts
   div(:display, :id => 'content')
   div(:success, :id => 'success')
   link(:delete, :name => 'delete-button')
+  link(:view, :name => 'view-button')
 end

@@ -30,7 +30,16 @@
         <div class="row">
             <h3>${post.title}</h3>
             <div class="row post-format">
-                <p>${post.content}</p>
+                <g:if test="${post.content.length() > 500}">
+                    <p>${post.content.substring(0, 500)}...
+                        <g:link action="view" name="view-button" params="${[postId: post.id, pageNumber: pageNumber]}">Read More</g:link>
+                    </p>
+
+                </g:if>
+                <g:else>
+                    <p>${post.content}</p>
+                    <g:link action="view" name="view-button" params="${[postId: post.id, pageNumber: pageNumber]}">View Post</g:link>
+                </g:else>
             </div>
             <span class="delete-button btn">
                 <g:link action="delete" name="delete-button" params="${[postId: post.id]}">Delete Post</g:link>

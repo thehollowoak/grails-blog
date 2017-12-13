@@ -30,4 +30,9 @@ class BlogController {
         render(view:'index', model: [content: content, posts: posts, pageNumber: params.pageNumber])
     }
 
+    def view(){
+        def post = Post.findById(params.postId)
+        render(view:'view', model: [post: post, pageNumber: params.pageNumber])
+    }
+
 }

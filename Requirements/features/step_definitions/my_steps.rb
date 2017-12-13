@@ -76,17 +76,35 @@ Then(/^I should see a summary of my favorite blogger's (\d+) most recent posts i
 
   on_page BlogPosts do |page|
     (1..11).each do
-      page.delete()
+      page.delete
     end
   end
 end
 
+Given(/^I visit a blog of my favorite blogger$/) do
+  visit_page NewPost
+  on_page NewPost do |page|
+    page.title = "Test new Title"
+    page.entry = "Test new Entry"
+    page.submit
+  end
+end
+
 When(/^I choose a blog post$/) do
-  pending
+  visit_page BlogPosts
+  on_page BlogPosts do |page|
+      page.view
+  end
 end
 
 Then(/^I should see the blog post$/) do
-  pending
+  on_page View do |page|
+    expect(page.display).to include 'Test new Entry'
+  end
+  visit_page BlogPosts
+  on_page BlogPosts do |page|
+    page.delete
+  end
 end
 
 When(/^I search for a blog post$/) do

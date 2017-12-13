@@ -51,3 +51,48 @@ And(/^the newly added blog post is at the top of the recent posts list$/) do
     expect(page.display).to include 'Test Title'
   end
 end
+
+Given(/^my favorite blogger has been very active$/) do
+  (1..11).each do |i|
+    visit_page NewPost
+    on_page NewPost do |page|
+     page.title = "Test #{i} Title"
+     page.entry = "Test #{i} Entry"
+     page.submit
+    end
+  end
+end
+
+When(/^I visit the blog for my favorite blogger$/) do
+  visit_page BlogPosts
+end
+
+Then(/^I should see a summary of my favorite blogger's (\d+) most recent posts in reverse order$/) do |arg|
+  on_page BlogPosts do |page|
+    expect(page.display).to include 'Test 2 Title'
+    expect(page.display).to include 'Test 11 Title'
+    expect(page.display).not_to include 'Test 1 Title'
+  end
+
+  on_page BlogPosts do |page|
+    (1..11).each do
+      page.delete()
+    end
+  end
+end
+
+When(/^I choose a blog post$/) do
+  pending
+end
+
+Then(/^I should see the blog post$/) do
+  pending
+end
+
+When(/^I search for a blog post$/) do
+  pending
+end
+
+Then(/^I should see posts with that value in the title$/) do
+  pending
+end

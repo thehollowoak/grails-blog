@@ -25,14 +25,15 @@
             <p>New post successfully created</p>
         </g:if>
     </div>
-    <g:each var="post" in="${posts}">
+    <g:each var="post" in="${posts.size() < 10 ? posts : posts.subList(0, 10)}">
+
         <div class="row">
             <h3>${post.title}</h3>
             <div class="row post-format">
                 <p>${post.content}</p>
             </div>
             <span class="delete-button btn">
-                <g:link action="delete" params="${[postId: post.id]}">Delete Post</g:link>
+                <g:link action="delete" name="delete-button" params="${[postId: post.id]}">Delete Post</g:link>
             </span>
             </br>
         </div>

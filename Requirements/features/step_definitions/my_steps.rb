@@ -88,6 +88,12 @@ Given(/^I visit a blog of my favorite blogger$/) do
     page.entry = "Test new Entry"
     page.submit
   end
+  visit_page NewPost
+  on_page NewPost do |page|
+    page.title = "Test alt Title"
+    page.entry = "Test alt Entry"
+    page.submit
+  end
 end
 
 When(/^I choose a blog post$/) do
@@ -104,13 +110,26 @@ Then(/^I should see the blog post$/) do
   visit_page BlogPosts
   on_page BlogPosts do |page|
     page.delete
+    page.delete
   end
 end
 
 When(/^I search for a blog post$/) do
-  pending
+  visit_page BlogPosts
+  on_page BlogPosts do |page|
+    page.search = "new"
+    page.submit_search
+  end
 end
 
 Then(/^I should see posts with that value in the title$/) do
-  pending
+  on_page BlogPosts do |page|
+    expect(page.display).to include 'new'
+    expect(page.display).not_to include 'alt'
+  end
+  visit_page BlogPosts
+  on_page BlogPosts do |page|
+    page.delete
+    page.delete
+  end
 end

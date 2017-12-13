@@ -18,11 +18,24 @@
     <div class="row">
          <a href="/blog/newPost" id="create-button" name="newpost" class="btn btn-success">Create New Post</a>
     </div>
+    <br>
+    <div class="row">
+        <form action="/blog/search" class="form-inline search" method="POST">
+            <div class="form-group">
+                <input type="text"
+                   class="form-control" name="search"
+                   placeholder="search">
+                <button class="search-button" type="submit" name="search-button" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+    </div>
     </br>
 
     <div class="row" id="success">
-        <g:if test="${use (groovy.time.TimeCategory) {groovy.time.TimeCategory.minus(new Date(), posts[0]?.date) < 10.seconds}}">
-            <p>New post successfully created</p>
+        <g:if test="${posts.size() > 0}">
+            <g:if test="${use (groovy.time.TimeCategory) {groovy.time.TimeCategory.minus(new Date(), posts[0]?.date) < 10.seconds}}">
+                <p>New post successfully created</p>
+            </g:if>
         </g:if>
     </div>
     <g:each var="post" in="${posts.size() < 10 ? posts : posts.subList(0, 10)}">

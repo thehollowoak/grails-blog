@@ -24,6 +24,10 @@
     text-decoration: none;
 }
 
+.search{
+    float: right;
+}
+
 .post-format{
     background-color: beige;
     border-color: black;
@@ -34,4 +38,5 @@
 .next-button{
     float: right;
 }
+
 

@@ -35,4 +35,11 @@ class BlogController {
         render(view:'view', model: [post: post, pageNumber: params.pageNumber])
     }
 
+    def search(){
+        def content = Blog.findByName('JSmith')
+        def posts = Post.findAllByAuthorAndTitleIlike('JSmith', "%${params.search}%")
+        def pageNumber = 1
+        render(view:'index', model: [content: content, posts: posts, pageNumber: pageNumber])
+    }
+
 }

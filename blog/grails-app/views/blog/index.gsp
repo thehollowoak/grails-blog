@@ -39,6 +39,17 @@
         </div>
     </g:each>
     <br>
+    <div class="row">
+         <g:if test="${posts.size() > 10}">
+            <g:link action="page" class="next-button" params="${[pageNumber: pageNumber.toInteger()+1]}">Next Page</g:link>
+        </g:if>
+        <g:if test="${pageNumber.toInteger() > 2}">
+            <g:link action="page" class="previous-button" params="${[pageNumber: pageNumber.toInteger()-1]}">Previous Page</g:link>
+        </g:if>
+        <g:if test="${pageNumber.toInteger() == 2}">
+            <g:link action="index" class="previous-button">Previous Page</g:link>
+        </g:if>
+    </div>
 
 </div>
 

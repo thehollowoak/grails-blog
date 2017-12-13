@@ -30,3 +30,8 @@
     border: solid;
     border-radius: 25px;
 }
+
+.next-button{
+    float: right;
+}
+

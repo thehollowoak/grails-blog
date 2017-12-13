@@ -6,7 +6,8 @@ class BlogController {
         def content = Blog.findByName('JSmith')
         def posts = Post.findAllByAuthor('JSmith')
         posts = posts.sort{a,b -> b.date <=> a.date}
-        render(view:'index', model: [content: content, posts: posts])
+        def pageNumber = 1
+        render(view:'index', model: [content: content, posts: posts, pageNumber: pageNumber])
     }
 
     def newPost() {}
@@ -19,6 +20,14 @@ class BlogController {
     def delete() {
         Post.findById(params.postId).delete(flush: true)
         redirect(uri: '/blog/index')
+    }
+
+    def page(){
+        def content = Blog.findByName('JSmith')
+        def posts = Post.findAllByAuthor('JSmith')
+        posts = posts.sort { a, b -> b.date <=> a.date}
+        posts = posts.subList(params.pageNumber.toInteger() * 10 - 10, posts.size())
+        render(view:'index', model: [content: content, posts: posts, pageNumber: params.pageNumber])
     }
 
 }

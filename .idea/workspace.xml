@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="016e8939-a494-4ac3-8b9d-79a94c9b5965" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Requirements/features/page_classes/blog_posts.rb" afterPath="$PROJECT_DIR$/Requirements/features/page_classes/blog_posts.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Requirements/features/step_definitions/my_steps.rb" afterPath="$PROJECT_DIR$/Requirements/features/step_definitions/my_steps.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/grails-app/assets/stylesheets/application.css" afterPath="$PROJECT_DIR$/blog/grails-app/assets/stylesheets/application.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/grails-app/controllers/blog/BlogController.groovy" afterPath="$PROJECT_DIR$/blog/grails-app/controllers/blog/BlogController.groovy" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/grails-app/views/blog/index.gsp" afterPath="$PROJECT_DIR$/blog/grails-app/views/blog/index.gsp" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -527,7 +528,7 @@
       <workItem from="1513093515405" duration="41000" />
       <workItem from="1513101725463" duration="6000" />
       <workItem from="1513101907595" duration="90000" />
-      <workItem from="1513177113472" duration="2232000" />
+      <workItem from="1513177113472" duration="2803000" />
     </task>
     <servers />
   </component>
@@ -564,7 +565,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22751000" />
+    <option name="totallyTimeSpent" value="23322000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="2902" height="1762" extended-state="6" />

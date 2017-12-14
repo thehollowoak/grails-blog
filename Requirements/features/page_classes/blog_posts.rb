@@ -8,7 +8,7 @@ class BlogPosts
   div(:display, :id => 'content')
   div(:success, :id => 'success')
   link(:delete, :name => 'delete-button')
-  link(:view, :name => 'view-button')
+  link(:view, :name => 'view-link')
   text_field(:search, :name => 'search')
   button(:submit_search, :name => 'search-button')
 end

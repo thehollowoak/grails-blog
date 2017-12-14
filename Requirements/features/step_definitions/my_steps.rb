@@ -159,5 +159,18 @@ end
 Then(/^my genius comment is at the top of the blog post comments$/) do
   on_page View do |page|
     expect(page.display).to include 'I love cats!'
+    @browser.refresh
+    page.delete
+  end
+end
+
+Then(/^the url should contain information about the post$/) do
+  on_page View do |page|
+    expect(@browser.url).to include "Test-alt-Title"
+  end
+  visit_page BlogPosts
+  on_page BlogPosts do |page|
+    page.delete
+    page.delete
   end
 end

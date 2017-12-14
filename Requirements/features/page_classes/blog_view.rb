@@ -9,4 +9,5 @@ class View
   text_field(:author, :name => 'author')
   textarea(:comment, :name => 'text')
   button(:submit, :name => 'post-comment')
+  link(:delete, :name => 'delete-button')
 end

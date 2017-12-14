@@ -45,17 +45,17 @@
             <div class="row post-format">
                 <g:if test="${post.content.length() > 500}">
                     <p>${post.content.substring(0, 500)}...
-                        <g:link action="view" name="view-button" params="${[postId: post.id, pageNumber: pageNumber]}">Read More</g:link>
+                        <a href="${createLink(mapping: "view", params: [postId: post.id, title: post.formatURL(), pageNumber: pageNumber])}" name="view-link">Read More</a>
                     </p>
 
                 </g:if>
                 <g:else>
                     <p>${post.content}</p>
-                    <g:link action="view" name="view-button" params="${[postId: post.id, pageNumber: pageNumber]}">View Post</g:link>
+                    <a href="${createLink(mapping: "view", params: [postId: post.id, title: post.formatURL(), pageNumber: pageNumber])}" name="view-link">View Post</a>
                 </g:else>
             </div>
             <span class="delete-button btn">
-                <g:link action="delete" name="delete-button" params="${[postId: post.id]}">Delete Post</g:link>
+                <g:link action="deletePost" name="delete-button" params="${[postId: post.id]}">Delete Post</g:link>
             </span>
             </br>
         </div>

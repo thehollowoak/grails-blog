@@ -46,6 +46,9 @@
             <div class="row">
                 <h6>${comment.name}</h6>
                 <p>${comment.text}</p>
+                <span class="delete-button btn">
+                    <g:link action="deleteComment" name="delete-button" params="${[commentId: comment.id, postId: post.id, pageNumber: pageNumber]}">Delete Comment</g:link>
+                </span>
             </div>
 
             </br>

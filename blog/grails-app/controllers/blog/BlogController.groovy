@@ -17,9 +17,14 @@ class BlogController {
         redirect(uri: '/blog/index')
     }
 
-    def delete() {
+    def deletePost() {
         Post.findById(params.postId).delete(flush: true)
         redirect(uri: '/blog/index')
+    }
+
+    def deleteComment() {
+        Comments.findById(params.commentId).delete(flush: true)
+        redirect(uri: '/blog/view' , params:[postId: params.postId, pageNumber: params.pageNumber])
     }
 
     def page(){

@@ -13,9 +13,11 @@
     </div>
     
     <div class="row">
-         <a href="/${content.name}/newPost" id="create-button" name="newpost" class="btn btn-success">Create New Post</a>
+        <g:if test="${blogger.loggedin}">
+            <a href="/${content.name}/newPost" id="create-button" name="newpost" class="btn btn-success">Create New Post</a>
+        </g:if>
     </div>
-    <br>
+    <br/>
     <div class="row">
         <form action="/${content.name}/search" class="form-inline search" method="POST">
             <div class="form-group">
@@ -26,10 +28,10 @@
             </div>
         </form>
     </div>
-    </br>
+    <br/>
 
     <div class="row" id="success">
-        <g:if test="${posts.size() > 0}">
+        <g:if test="${posts.size() > 0 && blogger.loggedin}">
             <g:if test="${use (groovy.time.TimeCategory) {groovy.time.TimeCategory.minus(new Date(), posts[0]?.date) < 10.seconds}}">
                 <p>New post successfully created</p>
             </g:if>
@@ -50,12 +52,16 @@
                     <a href="/${content.name}/${post.id}/${pageNumber}" name="view-link">View Post</a>
                 </g:else>
             </div>
+
             <span class="delete-button btn">
-                <a href="/${content.name}/deletePost/${post.id}" name="delete-button" class="btn btn-default">Delete Post</a>
+                <g:if test="${blogger.loggedin}">
+                    <a href="/${content.name}/deletePost/${post.id}" name="delete-button" class="btn btn-default">Delete Post</a>
+                </g:if>
             </span>
             </br>
         </div>
     </g:each>
+
     <br>
     <div class="row">
          <g:if test="${posts.size() > 10}">

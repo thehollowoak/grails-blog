@@ -3,11 +3,12 @@ package blog
 class BlogController {
 
     def index() {
+        def blogger = User.findByUsername(params.username)
         def content = Blog.findByName(params.username)
         def posts = Post.findAllByAuthor(params.username)
         posts = posts.sort{a,b -> b.date <=> a.date}
         def pageNumber = 1
-        render(view:'index', model: [content: content, posts: posts, pageNumber: pageNumber])
+        render(view:'index', model: [content: content, posts: posts, pageNumber: pageNumber, blogger: blogger])
     }
 
     def newPost() {
@@ -25,11 +26,12 @@ class BlogController {
     }
 
     def page(){
+        def blogger = User.findByUsername(params.username)
         def content = Blog.findByName(params.username)
         def posts = Post.findAllByAuthor(params.username)
         posts = posts.sort { a, b -> b.date <=> a.date}
         posts = posts.subList(params.pageNumber.toInteger() * 10 - 10, posts.size())
-        render(view:'index', model: [content: content, posts: posts, pageNumber: params.pageNumber])
+        render(view:'index', model: [content: content, posts: posts, pageNumber: params.pageNumber, blogger: blogger])
     }
 
     def search(){
@@ -40,10 +42,11 @@ class BlogController {
     }
 
     def view(){
+        def blogger = User.findByUsername(params.username)
         def post = Post.findById(params.postId)
         def comments = Comments.findAllByPostId(params.postId)
         comments = comments.reverse()
-        render(view:'view', model: [post: post, pageNumber: params.pageNumber, comments: comments])
+        render(view:'view', model: [post: post, pageNumber: params.pageNumber, comments: comments, blogger: blogger])
 
     }
 

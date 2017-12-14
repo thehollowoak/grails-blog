@@ -8,7 +8,8 @@ class LoginController {
     def verify(){
         def check = User.findByUsername(params.username)
         if(check.password == params.password){
-            check.loggedin = true;
+            check.loggedin = true
+            check.save(flush: true)
             redirect(uri: "/${check.username}")
         }
         else {

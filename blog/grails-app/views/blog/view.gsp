@@ -46,7 +46,9 @@
             <div class="row">
                 <h6>${comment.name}</h6>
                 <span class="delete-button btn">
-                    <g:link action="deleteComment" name="delete-button" params="${[commentId: comment.id, postId: post.id, pageNumber: pageNumber, username: post.author]}">Delete Comment</g:link>
+                    <g:if test="${blogger.loggedin}">
+                        <g:link action="deleteComment" name="delete-button" params="${[commentId: comment.id, postId: post.id, pageNumber: pageNumber, username: post.author]}">Delete Comment</g:link>
+                    </g:if>
                 </span>
                 <p>${comment.text}</p>
             </div>

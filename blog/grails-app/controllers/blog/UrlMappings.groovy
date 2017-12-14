@@ -9,13 +9,23 @@ class UrlMappings {
             }
         }
 
-        name view: "/blog/$postId/$title"{
+        name page: "/$username/page/$pageNumber" {
+            controller = "blog"
+            action = "page"
+        }
+
+        name blog: "/$username/$action?/$postId?" {
+            controller = "blog"
+        }
+
+        name view: "/$username/$postId/$pageNumber/$title" {
             controller = "blog"
             action = "view"
         }
-        name newPost: "/blog/newPost/$username"{
+
+        name redirectView: "/$username/$postId/$pageNumber" {
             controller = "blog"
-            action = "newPost"
+            action = "redirectView"
         }
 
         "/"(view:"/index")

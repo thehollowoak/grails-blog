@@ -23,10 +23,10 @@
     <br>
     <div class="row">
         <g:if test="${pageNumber.toInteger() == 1}">
-            <g:link action="index" class="back-button">Back</g:link>
+            <a href="/${post.author}" class="back-button">Back</a>
         </g:if>
         <g:else>
-            <g:link action="page" class="back-button" params="${[pageNumber: pageNumber]}">Back</g:link>
+            <a href="/${post.author}/page/${pageNumber}" class="back-button">Back</a>
         </g:else>
     </div>
     <div class="row">
@@ -36,8 +36,8 @@
             <label for="text">Leave a Comment: </label><br><g:textArea name="text"/><br/>
             <g:hiddenField name="postId" value="${post?.id}" />
             <g:submitToRemote url="[controller:'blog', action:'postComment']" name="post-comment" update="comments" value="Post"/>
-
         </g:form>
+
         <div class="row" id="comments">
         </div>
         <br>
@@ -45,10 +45,10 @@
 
             <div class="row">
                 <h6>${comment.name}</h6>
-                <p>${comment.text}</p>
                 <span class="delete-button btn">
-                    <g:link action="deleteComment" name="delete-button" params="${[commentId: comment.id, postId: post.id, pageNumber: pageNumber]}">Delete Comment</g:link>
+                    <g:link action="deleteComment" name="delete-button" params="${[commentId: comment.id, postId: post.id, pageNumber: pageNumber, username: post.author]}">Delete Comment</g:link>
                 </span>
+                <p>${comment.text}</p>
             </div>
 
             </br>

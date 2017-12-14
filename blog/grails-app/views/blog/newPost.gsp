@@ -9,7 +9,7 @@
 
 <div id="content" role="main">
     <div class="well well-lg col-md-6">
-        <form action="/blog/save" method="POST">
+        <form action="/${username}/save" method="POST">
             <div class="form-group">
                 <label for="title">Title</label>
                 <input type="text"
@@ -20,7 +20,6 @@
                 <textarea class="form-control"  id="composition" name="content"></textarea>
 
             </div>
-            <input type="hidden" value="${username}" name="username"/>
             <button type="submit" name="save" class="btn btn-primary">Save</button>
         </form>
     </div>

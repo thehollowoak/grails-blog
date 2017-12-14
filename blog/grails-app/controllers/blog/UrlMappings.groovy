@@ -9,6 +9,11 @@ class UrlMappings {
             }
         }
 
+        name home: "/" {
+            controller = "home"
+            action = "index"
+        }
+
         name page: "/$username/page/$pageNumber" {
             controller = "blog"
             action = "page"

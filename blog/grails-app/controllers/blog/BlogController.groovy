@@ -32,8 +32,9 @@ class BlogController {
 
     def view(){
         def post = Post.findById(params.postId)
-        //def comments = Comments.findAllByPostId(params.postId)
-        def comments = Comments.findAll()
+        def comments = Comments.findAllByPostId(params.postId)
+        //def comments = Comments.findAll()
+        comments = comments.reverse()
         render(view:'view', model: [post: post, pageNumber: params.pageNumber, comments: comments])
 
     }
@@ -45,9 +46,9 @@ class BlogController {
         render(view:'index', model: [content: content, posts: posts, pageNumber: pageNumber])
     }
     def postComment(){
-        def message = params.comment
-        new Comments(text: message, postId: params.postId).save()
-        render "${message}"
+        def message = params.text
+        def newComment = new Comments(text: message, postId: params.postId, name: params.author, date: new Date()).save()
+        render(template: 'comment', model:[newComment: newComment])
     }
 
 }

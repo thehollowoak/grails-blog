@@ -150,6 +150,7 @@ end
 
 When(/^I add my genius comment to the blog post$/) do
   on_page View do |page|
+    page.author = "Cat_Lover99"
     page.comment = "I love cats!"
     page.submit
   end
@@ -157,6 +158,6 @@ end
 
 Then(/^my genius comment is at the top of the blog post comments$/) do
   on_page View do |page|
-    expect(page.display).to inlcude 'I love cats!'
+    expect(page.display).to include 'I love cats!'
   end
 end

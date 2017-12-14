@@ -31,20 +31,20 @@
     </div>
     <div class="row">
         <h3>Comments</h3>
-        <div id="comments">
-        </div>
         <g:form>
-            <label for="comment">Leave a Comment: </label><g:textField name="comment"/><br/>
+            <label for="author">Name: </label><g:textField name="author"/><br/>
+            <label for="text">Leave a Comment: </label><br><g:textArea name="text"/><br/>
             <g:hiddenField name="postId" value="${post?.id}" />
-            <g:submitToRemote url="[controller:'blog', action:'postComment']" update="comments" value="Post"/>
+            <g:submitToRemote url="[controller:'blog', action:'postComment']" name="post-comment" update="comments" value="Post"/>
 
         </g:form>
+        <div class="row" id="comments">
+        </div>
+        <br>
         <g:each var="comment" in="${comments}">
 
             <div class="row">
                 <h6>${comment.name}</h6>
-            </div>
-            <div class="row">
                 <p>${comment.text}</p>
             </div>
 

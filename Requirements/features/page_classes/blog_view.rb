@@ -6,6 +6,7 @@ class View
   page_url "http://localhost:8080/blog/view"
 
   div(:display, :id => 'content')
-  text-area(:comment, :id => 'comment')
-  buton(:submit, :id => 'comment-button')
+  text_field(:author, :name => 'author')
+  textarea(:comment, :name => 'text')
+  button(:submit, :name => 'post-comment')
 end

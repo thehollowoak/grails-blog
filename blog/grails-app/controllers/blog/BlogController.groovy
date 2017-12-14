@@ -3,18 +3,20 @@ package blog
 class BlogController {
 
     def index() {
-        def content = Blog.findByName('JSmith')
-        def posts = Post.findAllByAuthor('JSmith')
+        def content = Blog.findByName(params.username)
+        def posts = Post.findAllByAuthor(params.username)
         posts = posts.sort{a,b -> b.date <=> a.date}
         def pageNumber = 1
         render(view:'index', model: [content: content, posts: posts, pageNumber: pageNumber])
     }
 
-    def newPost() {}
+    def newPost() {
+        render(view: 'newPost', model: [username: params.username])
+    }
 
     def save() {
-        new Post(title: params.title, date: new Date(), content: params.content, author: 'JSmith').save()
-        redirect(uri: '/blog/index')
+        new Post(title: params.title, date: new Date(), content: params.content, author: params.username).save()
+        redirect(uri: "/blog/index?username=${params.username}")
     }
 
     def deletePost() {

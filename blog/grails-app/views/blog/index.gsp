@@ -16,7 +16,7 @@
     </div>
     
     <div class="row">
-         <a href="/blog/newPost" id="create-button" name="newpost" class="btn btn-success">Create New Post</a>
+         <a href="${createLink(mapping: "newPost", params: [username: content?.name])}" id="create-button" name="newpost" class="btn btn-success">Create New Post</a>
     </div>
     <br>
     <div class="row">

@@ -13,6 +13,10 @@ class UrlMappings {
             controller = "blog"
             action = "view"
         }
+        name newPost: "/blog/newPost/$username"{
+            controller = "blog"
+            action = "newPost"
+        }
 
         "/"(view:"/index")
         "500"(view:'/error')

@@ -3,7 +3,7 @@ require 'page-object'
 class BlogPosts
   include PageObject
 
-  page_url "http://localhost:8080/blog/"
+  page_url "http://localhost:8080/user/"
 
   div(:display, :id => 'content')
   div(:success, :id => 'success')

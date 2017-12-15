@@ -35,10 +35,11 @@ class BlogController {
     }
 
     def search(){
+        def blogger = User.findByUsername(params.username)
         def content = Blog.findByName(params.username)
         def posts = Post.findAllByAuthorAndTitleIlike(params.username, "%${params.search}%")
         def pageNumber = 1
-        render(view:'index', model: [content: content, posts: posts, pageNumber: pageNumber])
+        render(view:'index', model: [content: content, posts: posts, pageNumber: pageNumber, blogger: blogger])
     }
 
     def view(){

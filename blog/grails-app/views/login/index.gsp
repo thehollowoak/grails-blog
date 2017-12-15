@@ -6,9 +6,12 @@
 </head>
 <body class="container">
 
-
 <div class="row align-items-center justify-content-center" id="content" role="main">
     <div class="well well-lg col-md-6">
+        <g:if test="${invalid}">
+            <p id="invalid"> Username or password is invalid </p>
+        </g:if>
+        <g:else> <br/> </g:else>
         <form action="/login/verify" method="POST">
             <div class="form-group">
                 <label for="username">Username</label>

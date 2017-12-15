@@ -3,7 +3,7 @@ require 'page-object'
 class View
   include PageObject
 
-  page_url "http://localhost:8080/blog/view"
+  page_url "http://localhost:8080/user/view"
 
   div(:display, :id => 'content')
   text_field(:author, :name => 'author')

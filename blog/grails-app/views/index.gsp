@@ -10,6 +10,8 @@
         <h1>Welcome to Blog</h1>
         <br/>
         <a href="/login">Blogger Login</a>
+        <br/>
+        <a href="/home">Blog List</a>
 
     </div>
 </body>

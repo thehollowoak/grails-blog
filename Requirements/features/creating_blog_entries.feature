@@ -3,11 +3,6 @@ Feature: Post a Blog Entry
   As a Blogger
   I want to be able to post a blog entry
 
-  Scenario: Login
-    Given I visit the login page
-    When I enter my information
-    Then I am logged in
-
   Scenario: New Blog Post
     Given I am logged in as a blogger
     When I publish a new blog post

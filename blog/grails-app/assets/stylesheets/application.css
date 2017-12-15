@@ -39,3 +39,11 @@
     float: right;
 }
 
+#invalid{
+    color: red
+}
+
+h6 {
+    font-weight: bold;
+    color: black
+}

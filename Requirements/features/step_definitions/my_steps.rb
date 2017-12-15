@@ -2,32 +2,8 @@ require 'page-object'
 
 include PageObject::PageFactory
 
-Given(/^I visit the login page$/) do
-  visit_page Login
-end
-
-When(/^I enter my information$/) do
-  on_page Login do |page|
-    page.user = 'user'
-    page.password = 'pass'
-    page.submit
-  end
-end
-
-Then(/^I am logged in$/) do
-  visit_page BlogPosts
-  on_page BlogPosts do |page|
-    expect(page.display).to include 'Create New Post'
-  end
-end
-
 Given(/^I am logged in as a blogger$/) do
-  visit_page Login
-  on_page Login do |page|
-    page.user = 'user'
-    page.password = 'pass'
-    page.submit
-  end
+  # loggin happens in hooks
 end
 
 When(/^I publish a new blog post$/) do
@@ -81,21 +57,6 @@ Then(/^I should see a summary of my favorite blogger's (\d+) most recent posts i
   end
 end
 
-Given(/^I visit a blog of my favorite blogger$/) do
-  visit_page NewPost
-  on_page NewPost do |page|
-    page.title = "Test new Title"
-    page.entry = "Test new Entry"
-    page.submit
-  end
-  visit_page NewPost
-  on_page NewPost do |page|
-    page.title = "Test alt Title"
-    page.entry = "Test alt Entry"
-    page.submit
-  end
-end
-
 When(/^I choose a blog post$/) do
   visit_page BlogPosts
   on_page BlogPosts do |page|
@@ -105,12 +66,7 @@ end
 
 Then(/^I should see the blog post$/) do
   on_page View do |page|
-    expect(page.display).to include 'Test new Entry'
-  end
-  visit_page BlogPosts
-  on_page BlogPosts do |page|
-    page.delete
-    page.delete
+    expect(page.display).to include 'Test alt Entry'
   end
 end
 
@@ -126,11 +82,6 @@ Then(/^I should see posts with that value in the title$/) do
   on_page BlogPosts do |page|
     expect(page.display).to include 'new'
     expect(page.display).not_to include 'alt'
-  end
-  visit_page BlogPosts
-  on_page BlogPosts do |page|
-    page.delete
-    page.delete
   end
 end
 
@@ -167,10 +118,5 @@ end
 Then(/^the url should contain information about the post$/) do
   on_page View do |page|
     expect(@browser.url).to include "Test-alt-Title"
-  end
-  visit_page BlogPosts
-  on_page BlogPosts do |page|
-    page.delete
-    page.delete
   end
 end

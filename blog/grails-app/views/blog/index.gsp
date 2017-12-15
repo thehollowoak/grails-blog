@@ -52,6 +52,7 @@
                     <a href="/${content.name}/${post.id}/${pageNumber}" name="view-link">View Post</a>
                 </g:else>
             </div>
+            <span>${post.date.format('MM/dd/yy hh:mm a')}</span>
 
             <span class="delete-button btn">
                 <g:if test="${blogger.loggedin}">

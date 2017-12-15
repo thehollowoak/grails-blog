@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
+    <asset:javascript src="application.js"/>
     <title>${post?.title}</title>
 </head>
 <body class= 'container'>
@@ -32,39 +33,31 @@
     <br/>
     <div class="row">
         <g:form>
-            <label for="author">Name: </label><g:textField name="author"/><br/>
-            <label for="text">Leave a Comment: </label><br><g:textArea name="text"/><br/>
-            <g:hiddenField name="postId" value="${post?.id}" />
-            <g:submitToRemote url="[controller:'blog', action:'postComment']" name="post-comment" update="comments" value="Post"/>
+            <label for="author">Name: </label><g:textField name="author" id="author"/><br/>
+            <label for="text">Leave a Comment: </label><br><g:textArea name="text" id="text"/><br/>
+            <g:hiddenField name="postId" value="${post.id}" />
+            <g:hiddenField name="pageNumber" value="${pageNumber}" />
+            <g:hiddenField name="bloggerName" value="${blogger.username}" />
+            <g:submitToRemote url="[controller:'blog', action:'postComment']" id="post-comment" name="post-comment" update="comments" value="Post"/>
         </g:form>
 
         <h3>Comments</h3>
-        <div class="row" id="comments">
+        <br/>
+        <div id="comments">
         </div>
-        <br>
         <g:each var="comment" in="${comments}">
-
-            <div class="row well">
-                <h6>${comment.name}</h6>
-                <div class="row">
-                    <p>${comment.text}</p>
-                </div>
-                <div class="col-sm-9">
-                    ${post.date.format('MM/dd/yy hh:mm a')}
-                </div>
-                <div class="col-sm-3">
-                <g:if test="${blogger.loggedin}">
-                    <g:link action="deleteComment" name="delete-button" params="${[commentId: comment.id, postId: post.id, pageNumber: pageNumber, username: post.author]}">Delete Comment</g:link>
-                </g:if>
-                </div>
-            </div>
-
-            </br>
-
+            <g:render template="/blog/comment" model="[comment: comment, post: post, pageNumber: pageNumber]"/>
         </g:each>
     </div>
 
 </div>
+
+<g:javascript>
+    $("#post-comment").click(function() {
+        $("#author").val("");
+        $("#text").val("");
+    });
+</g:javascript>
 
 </body>
 </html>

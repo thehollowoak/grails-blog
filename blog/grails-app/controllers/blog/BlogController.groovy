@@ -48,7 +48,6 @@ class BlogController {
         def comments = Comments.findAllByPostId(params.postId)
         comments = comments.reverse()
         render(view:'view', model: [post: post, pageNumber: params.pageNumber, comments: comments, blogger: blogger])
-
     }
 
     def redirectView() {
@@ -57,9 +56,10 @@ class BlogController {
     }
     
     def postComment(){
-        def message = params.text
-        def newComment = new Comments(text: message, postId: params.postId, name: params.author, date: new Date()).save()
-        render(template: 'comment', model:[newComment: newComment])
+        def blogger = User.findByUsername(params.bloggerName)
+        def post = Post.findById(params.postId)
+        def newComment = new Comments(text: params.text, postId: params.postId, name: params.author, date: new Date()).save()
+        render(template: 'comment', model:[comment: newComment, post: post, pageNumber: params.pageNumber, blogger: blogger])
     }
 
     def deleteComment() {

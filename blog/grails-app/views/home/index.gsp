@@ -9,7 +9,8 @@
         
         <h1>Welcome to Blog</h1>
         <br/>
-        <a href="/login">Blogger Login</a>
+        <a href="/login">Blogger Login</a> <br/>
+        <a href="/home/newUser">Blogger Signup</a>
         <br/><br/>
         <div>
             <h4> Read a blog: </h4>

@@ -13,10 +13,17 @@
 *= require mobile
 *= require_self
 */
+a {
+    color: black;
+    font-weight: bold;
+}
+
+a:hover {
+    color: blue;
+}
 
 #author-name{
     text-align: center;
-
 }
 
 #create-button, .delete-button{
@@ -43,7 +50,15 @@
     color: red
 }
 
+h1 {
+    font-weight: 900 !important;
+}
+
 h6 {
     font-weight: bold;
     color: black
+}
+
+#composition {
+    height: 300px;
 }

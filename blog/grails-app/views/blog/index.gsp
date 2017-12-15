@@ -24,7 +24,7 @@
                 <input type="text"
                    class="form-control" name="search"
                    placeholder="search">
-                <button class="search-button" type="submit" name="search-button" class="btn btn-primary">Search</button>
+                <button class="search-button btn btn-secondary" type="submit" name="search-button">Search</button>
             </div>
         </form>
     </div>
@@ -56,7 +56,7 @@
 
             <span class="delete-button btn">
                 <g:if test="${blogger.loggedin}">
-                    <a href="/${content.name}/deletePost/${post.id}" name="delete-button" class="btn btn-default">Delete Post</a>
+                    <a href="/${content.name}/deletePost/${post.id}" name="delete-button" class="delete-button btn btn-default">Delete Post</a>
                 </g:if>
             </span>
             </br>

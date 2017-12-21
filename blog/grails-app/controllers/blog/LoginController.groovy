@@ -9,9 +9,11 @@ class LoginController {
     def verify(){
         def check = User.findByUsername(params.username)
         if(check?.password == params.password){
+            def session = request.getSession(true);
+            session.setAttribute("username", check.username)
             check.loggedin = true
             check.save(flush: true)
-            redirect(uri: "/${check.username}")
+            redirect(uri: "/${session.getAttribute("username")}")
         }
         else {
             redirect(uri: '/login?invalid=true')

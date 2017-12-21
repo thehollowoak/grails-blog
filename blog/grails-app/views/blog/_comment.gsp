@@ -8,7 +8,7 @@
         ${post.date.format('MM/dd/yy hh:mm a')}
     </div>
     <div class="col-sm-3">
-    <g:if test="${blogger.loggedin}">
+    <g:if test="${blogger?.loggedin}">
         <g:link action="deleteComment" name="delete-button" params="${[commentId: comment.id, postId: post.id, pageNumber: pageNumber, username: post.author]}">Delete Comment</g:link>
     </g:if>
     </div>

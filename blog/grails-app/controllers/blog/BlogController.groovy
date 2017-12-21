@@ -3,12 +3,13 @@ package blog
 class BlogController {
 
     def index() {
-        def blogger = User.findByUsername(params.username)
+        def blogger = User.findByUsername(session.getAttribute("username"))
         def content = Blog.findByName(params.username)
         def posts = Post.findAllByAuthor(params.username)
+        def fullPosts = posts
         posts = posts.sort{a,b -> b.date <=> a.date}
         def pageNumber = 1
-        render(view:'index', model: [content: content, posts: posts, pageNumber: pageNumber, blogger: blogger])
+        render(view:'index', model: [content: content, posts: posts, fullPosts: fullPosts, pageNumber: pageNumber, blogger: blogger])
     }
 
     def newPost() {
@@ -26,28 +27,32 @@ class BlogController {
     }
 
     def page(){
-        def blogger = User.findByUsername(params.username)
+        def blogger = User.findByUsername(session.getAttribute("username"))
         def content = Blog.findByName(params.username)
         def posts = Post.findAllByAuthor(params.username)
+        def fullPosts = posts
         posts = posts.sort { a, b -> b.date <=> a.date}
         posts = posts.subList(params.pageNumber.toInteger() * 10 - 10, posts.size())
-        render(view:'index', model: [content: content, posts: posts, pageNumber: params.pageNumber, blogger: blogger])
+        render(view:'index', model: [content: content, posts: posts, fullPosts: fullPosts, pageNumber: params.pageNumber, blogger: blogger])
     }
 
     def search(){
-        def blogger = User.findByUsername(params.username)
+        def blogger = User.findByUsername(session.getAttribute("username"))
         def content = Blog.findByName(params.username)
         def posts = Post.findAllByAuthorAndTitleIlike(params.username, "%${params.search}%")
+        def fullPosts = Post.findAllByAuthor(params.username)
         def pageNumber = 1
-        render(view:'index', model: [content: content, posts: posts, pageNumber: pageNumber, blogger: blogger])
+        render(view:'index', model: [content: content, posts: posts, fullPosts: fullPosts, pageNumber: pageNumber, blogger: blogger])
     }
 
     def view(){
-        def blogger = User.findByUsername(params.username)
+        def blogger = User.findByUsername(session.getAttribute("username"))
+        def content = Blog.findByName(params.username)
         def post = Post.findById(params.postId)
         def comments = Comments.findAllByPostId(params.postId)
+        def fullPosts = Post.findAllByAuthor(params.username)
         comments = comments.reverse()
-        render(view:'view', model: [post: post, pageNumber: params.pageNumber, comments: comments, blogger: blogger])
+        render(view:'view', model: [content: content, post: post, fullPosts: fullPosts, pageNumber: params.pageNumber, comments: comments, blogger: blogger])
     }
 
     def redirectView() {
@@ -56,7 +61,7 @@ class BlogController {
     }
     
     def postComment(){
-        def blogger = User.findByUsername(params.bloggerName)
+        def blogger = User.findByUsername(session.getAttribute("username"))
         def post = Post.findById(params.postId)
         def newComment = new Comments(text: params.text, postId: params.postId, name: params.author, date: new Date()).save()
         render(template: 'comment', model:[comment: newComment, post: post, pageNumber: params.pageNumber, blogger: blogger])
@@ -65,6 +70,14 @@ class BlogController {
     def deleteComment() {
         Comments.findById(params.commentId).delete(flush: true)
         redirect(uri: "/${params.username}/${params.postId}/${params.pageNumber}")
+    }
+
+    def logout(){
+        def check = User.findByUsername(session.getAttribute("username"))
+        check.loggedin = false
+        check.save(flush: true)
+        session.invalidate()
+        redirect(uri: "/home")
     }
 
 }

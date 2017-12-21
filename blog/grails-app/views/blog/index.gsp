@@ -4,16 +4,21 @@
     <meta name="layout" content="main"/>
     <title>${content.title}</title>
 </head>
-<body class= 'container'>
+<>
+
+  class= 'container'>
 
 <div id="content" role="main">
     <div class="row">
         <h1>${content.title}</h1>
+        <g:if test="${blogger?.loggedin}">
+            <a href="/${content.name}/logout" id="logout-button" name="logout" class="btn btn-danger">Logout</a>
+        </g:if>
          <h4 id="author-name">${content.name}</h4>
     </div>
     
     <div class="row">
-        <g:if test="${blogger.loggedin}">
+        <g:if test="${blogger?.loggedin}">
             <a href="/${content.name}/newPost" id="create-button" name="newpost" class="btn btn-success">Create New Post</a>
         </g:if>
     </div>
@@ -31,12 +36,91 @@
     <br/>
 
     <div class="row" id="success">
-        <g:if test="${posts.size() > 0 && blogger.loggedin}">
+        <g:if test="${posts.size() > 0 && blogger?.loggedin}">
             <g:if test="${use (groovy.time.TimeCategory) {groovy.time.TimeCategory.minus(new Date(), posts[0]?.date) < 10.seconds}}">
                 <p>New post successfully created</p>
             </g:if>
         </g:if>
     </div>
+
+    <div id="side-bar" class="row">
+
+        <h2>
+            Archives
+        </h2>
+
+        <g:each var="i" in="${0..<fullPosts.size()}">
+
+            <g:if test="${i == 0}">
+                <div id="${fullPosts[i].date.format('yyyy')}">
+                ${fullPosts[i].date.format('yyyy')}
+                <button class="clear-button" data-toggle="collapse" data-target="#${fullPosts[i].date.format('yyyy')}-months">></button>
+                <div id="${fullPosts[i].date.format('yyyy')}-months" class="collapse">
+                                <div class="row" id="${fullPosts[i].date.format('YYYY-MMMM')}">
+                ${fullPosts[i].date.format('MMMM')}
+                <button class="clear-button" data-toggle="collapse" data-target="#${fullPosts[i].date.format('YYYY-MMMM')}-post-links">></button>
+                <div class="row collapse" id="${fullPosts[i].date.format('YYYY-MMMM')}-post-links">
+                <a href="/${content.name}/${fullPosts[i].id}/${pageNumber}" name="view-link">${fullPosts[i].title}</a>
+                <g:if test="${i == fullPosts.size()-1}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </g:if>
+            </g:if>
+            <g:elseif test="${(fullPosts[i].date.format('yyyy') == fullPosts[i-1].date.format('yyyy')) && (fullPosts[i].date.format('MMMM') == fullPosts[i-1].date.format('MMMM'))}">
+                <br>
+                <a href="/${content.name}/${fullPosts[i].id}/${pageNumber}" name="view-link">${fullPosts[i].title}</a>
+                <g:if test="${i == fullPosts.size()-1}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </g:if>
+            </g:elseif>
+            <g:elseif test="${(fullPosts[i].date.format('yyyy') == fullPosts[i-1].date.format('yyyy')) && (fullPosts[i].date.format('MMMM') != fullPosts[i-1].date.format('MMMM'))}">
+                </div>
+                </div>
+                <div class="row" id="${fullPosts[i].date.format('YYYY-MMMM')}">
+                ${fullPosts[i].date.format('MMMM')}
+                <button class="clear-button" data-toggle="collapse" data-target="#${fullPosts[i].date.format('YYYY-MMMM')}-post-links">></button>
+                <div class="row collapse" id="${fullPosts[i].date.format('YYYY-MMMM')}-post-links">
+                <a href="/${content.name}/${fullPosts[i].id}/${pageNumber}" name="view-link">${fullPosts[i].title}</a>
+                <g:if test="${i == fullPosts.size()-1}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </g:if>
+            </g:elseif>
+            <g:elseif test="${(fullPosts[i].date.format('yyyy') != fullPosts[i-1].date.format('yyyy')) && (fullPosts[i].date.format('MMMM') != fullPosts[i-1].date.format('MMMM'))}">
+                </div>
+                </div>
+                </div>
+                </div>
+                <div id="${fullPosts[i].date.format('yyyy')}">
+                ${fullPosts[i].date.format('yyyy')}
+                <button class="clear-button" data-toggle="collapse" data-target="#${fullPosts[i].date.format('yyyy')}-months">></button>
+                <div id="${fullPosts[i].date.format('yyyy')}-months" class="collapse">
+                                <div class="row" id="${fullPosts[i].date.format('YYYY-MMMM')}">
+                ${fullPosts[i].date.format('MMMM')}
+                <button class="clear-button" data-toggle="collapse" data-target="#${fullPosts[i].date.format('YYYY-MMMM')}-post-links">></button>
+                <div class="row collapse" id="${fullPosts[i].date.format('YYYY-MMMM')}-post-links">
+                <a href="/${content.name}/${fullPosts[i].id}/${pageNumber}" name="view-link">${fullPosts[i].title}</a>
+                <g:if test="${i == fullPosts.size()-1}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </g:if>
+            </g:elseif>
+
+        </g:each>
+        <br>
+    </div>>
+
+    <div id="post-div">
+
     <g:each var="post" in="${posts.size() < 10 ? posts : posts.subList(0, 10)}">
 
         <div class="row">
@@ -55,13 +139,14 @@
             <span>${post.date.format('MM/dd/yy hh:mm a')}</span>
 
             <span class="delete-button btn">
-                <g:if test="${blogger.loggedin}">
+                <g:if test="${blogger?.loggedin}">
                     <a href="/${content.name}/deletePost/${post.id}" name="delete-button" class="btn btn-default">Delete Post</a>
                 </g:if>
             </span>
             </br>
         </div>
     </g:each>
+    </div>
 
     <br>
     <div class="row">

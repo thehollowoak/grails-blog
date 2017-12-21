@@ -47,3 +47,22 @@ h6 {
     font-weight: bold;
     color: black
 }
+
+#side-bar{
+    float: right;
+    border-top: solid;
+    border-bottom: solid;
+}
+
+#post-div{
+}
+
+.clear-button {
+
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+
+}

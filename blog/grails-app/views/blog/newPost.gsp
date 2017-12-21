@@ -8,7 +8,8 @@
 
 
 <div id="content" role="main">
-    <div class="well well-lg col-md-6">
+    <div class="col-sm-3"></div>
+    <div class="well well-lg col-sm-6">
         <form action="/${username}/save" method="POST">
             <div class="form-group">
                 <label for="title">Title</label>
@@ -17,8 +18,7 @@
                        placeholder="title">
             </div>
             <div class="form-group">
-                <textarea class="form-control"  id="composition" name="content"></textarea>
-
+                <textarea class="form-control" id="composition" name="content"></textarea>
             </div>
             <button type="submit" name="save" class="btn btn-primary">Save</button>
         </form>
